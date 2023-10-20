@@ -11,12 +11,13 @@ import {
     Heading,
     Text,
     useColorModeValue,
-    Link,
+    useToast
   } from '@chakra-ui/react';
   import { useState } from 'react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
   import { useDispatch } from 'react-redux';
   import { registerUser } from '../Redux/AuthReducer/action';
+  import {Link} from "react-router-dom";
   
   const initialState = {
     email : "",
@@ -28,6 +29,7 @@ import {
     const [showPassword, setShowPassword] = useState(false);
     const [register , setRegister] = useState(initialState)
    const dispatch = useDispatch()
+   const toast=useToast()
     
    const handleChange = (e) =>{
     const {name ,value} = e.target;
@@ -40,8 +42,16 @@ import {
       e.preventDefault()
       console.log(register)
       dispatch(registerUser(register))
+      toast({
+        title: 'Sign Up Successfully',
+        description: "Sign Up Successfully",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
       setRegister(initialState)
-      window.location.href="/login"
+
+      // window.location.href="/login"
    }
   
     return (
@@ -115,7 +125,7 @@ import {
               </Stack>
               <Stack pt={6}>
                 <Text align={'center'}>
-                  Already a user? <Link color={'blue.400'} href='/login'>Login</Link>
+                  Already a user? <Link color={'blue.400'} to='/login'>Login</Link>
                 </Text>
               </Stack>
             </Stack>

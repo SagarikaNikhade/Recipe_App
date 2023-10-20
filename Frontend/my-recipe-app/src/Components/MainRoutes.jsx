@@ -9,7 +9,7 @@ function MainRoutes() {
     return (
         <Routes>
             <Route path="/" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login/>} />
             <Route path="/all" element={
             // <PrivateRoute>
                 <RecipeSearch />
